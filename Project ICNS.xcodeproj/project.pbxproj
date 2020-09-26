@@ -3,25 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76BAD874251EE77E00C25512 /* Project_ICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* Project_ICNSApp.swift */; };
-		76BAD876251EE77E00C25512 /* Project_ICNSDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD875251EE77E00C25512 /* Project_ICNSDocument.swift */; };
+		76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */; };
+		76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */; };
 		76BAD878251EE77E00C25512 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD877251EE77E00C25512 /* ContentView.swift */; };
 		76BAD87A251EE78000C25512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BAD879251EE78000C25512 /* Assets.xcassets */; };
 		76BAD87D251EE78000C25512 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BAD87C251EE78000C25512 /* Preview Assets.xcassets */; };
+		76BAD888251FC08800C25512 /* ProjectEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD887251FC08800C25512 /* ProjectEditor.swift */; };
+		76BAD88E251FCA3600C25512 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76BAD88D251FCA3600C25512 /* SwiftUIX */; };
+		76BAD891251FD86200C25512 /* plist Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD890251FD86200C25512 /* plist Generator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		76BAD870251EE77E00C25512 /* Project ICNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project ICNS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		76BAD873251EE77E00C25512 /* Project_ICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_ICNSApp.swift; sourceTree = "<group>"; };
-		76BAD875251EE77E00C25512 /* Project_ICNSDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_ICNSDocument.swift; sourceTree = "<group>"; };
+		76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectICNSApp.swift; sourceTree = "<group>"; };
+		76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeThemeDocument.swift; sourceTree = "<group>"; };
 		76BAD877251EE77E00C25512 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		76BAD879251EE78000C25512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76BAD87C251EE78000C25512 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		76BAD87E251EE78000C25512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76BAD887251FC08800C25512 /* ProjectEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditor.swift; sourceTree = "<group>"; };
+		76BAD88A251FCA2C00C25512 /* SwiftUIX-0.0.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SwiftUIX-0.0.3"; path = "../../Downloads/SwiftUIX-0.0.3"; sourceTree = "<group>"; };
+		76BAD890251FD86200C25512 /* plist Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "plist Generator.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76BAD88E251FCA3600C25512 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +45,10 @@
 		76BAD867251EE77D00C25512 = {
 			isa = PBXGroup;
 			children = (
+				76BAD88A251FCA2C00C25512 /* SwiftUIX-0.0.3 */,
 				76BAD872251EE77E00C25512 /* Project ICNS */,
 				76BAD871251EE77E00C25512 /* Products */,
+				76BAD88C251FCA3600C25512 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,9 +63,11 @@
 		76BAD872251EE77E00C25512 /* Project ICNS */ = {
 			isa = PBXGroup;
 			children = (
-				76BAD873251EE77E00C25512 /* Project_ICNSApp.swift */,
-				76BAD875251EE77E00C25512 /* Project_ICNSDocument.swift */,
+				76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */,
+				76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */,
 				76BAD877251EE77E00C25512 /* ContentView.swift */,
+				76BAD887251FC08800C25512 /* ProjectEditor.swift */,
+				76BAD890251FD86200C25512 /* plist Generator.swift */,
 				76BAD879251EE78000C25512 /* Assets.xcassets */,
 				76BAD87E251EE78000C25512 /* Info.plist */,
 				76BAD87B251EE78000C25512 /* Preview Content */,
@@ -70,6 +81,13 @@
 				76BAD87C251EE78000C25512 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		76BAD88C251FCA3600C25512 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +106,9 @@
 			dependencies = (
 			);
 			name = "Project ICNS";
+			packageProductDependencies = (
+				76BAD88D251FCA3600C25512 /* SwiftUIX */,
+			);
 			productName = "Project ICNS";
 			productReference = 76BAD870251EE77E00C25512 /* Project ICNS.app */;
 			productType = "com.apple.product-type.application";
@@ -141,8 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76BAD874251EE77E00C25512 /* Project_ICNSApp.swift in Sources */,
-				76BAD876251EE77E00C25512 /* Project_ICNSDocument.swift in Sources */,
+				76BAD888251FC08800C25512 /* ProjectEditor.swift in Sources */,
+				76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */,
+				76BAD891251FD86200C25512 /* plist Generator.swift in Sources */,
+				76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */,
 				76BAD878251EE77E00C25512 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +355,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		76BAD88D251FCA3600C25512 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftUIX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 76BAD868251EE77D00C25512 /* Project object */;
 }

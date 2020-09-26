@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Binding var document: Project_ICNSDocument
+    @Binding var document: HomeThemeDocument
 
     var body: some View {
-        TextEditor(text: $document.text)
+        ProjectEditor(theme: $document)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(document: .constant(Project_ICNSDocument()))
+        ContentView(document: .constant(HomeThemeDocument()))
     }
 }

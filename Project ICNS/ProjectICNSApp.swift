@@ -8,9 +8,9 @@
 import SwiftUI
 
 @main
-struct Project_ICNSApp: App {
+struct ProjectICNSApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: Project_ICNSDocument()) { file in
+        DocumentGroup(newDocument: HomeThemeDocument()) { file in
             ContentView(document: file.$document)
         }
     }
