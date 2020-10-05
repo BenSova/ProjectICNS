@@ -20,6 +20,15 @@ struct ProjectEditor: View {
     @State var shareItems: [Any] = []
     @State var searchFor = ""
     @State var showSearch = true
+    @State var themeEdit = ThemeContent(
+        iconName: "",
+        appName: "",
+        bundleID: "",
+        image: "",
+        url: "http://"
+    )
+    @State var whichEdit = 0
+    @State var useNil = true
     
     var body: some View {
         VStack {
@@ -34,26 +43,25 @@ struct ProjectEditor: View {
                         showSearch = true
                     }
             }
-            List(theme.themeContents.filter {
-                if searchFor != "" {
-                    if $0.iconName.contains(searchFor.lowercased()) || $0.bundleID.contains(searchFor.lowercased()) {
+            List {
+                ForEach((0 ..< theme.themeContents.count).filter {
+                    if searchFor != "" {
+                        if theme.themeContents[$0].iconName.contains(searchFor.lowercased()) || theme.themeContents[$0].bundleID.contains(searchFor.lowercased()) {
+                            return true
+                        }
+                        return false
+                    } else {
                         return true
                     }
-                    return false
-                } else {
-                    return true
-                }
-            }, id: \.iconName) { icon in
-                IconRow(icon: icon)
+                }, id: \.self) { icon in
+                    IconRow(icon: .init(get: {theme.themeContents[icon]}, set: {theme.themeContents[icon] = $0}), iconID: icon, showSheet: $showSheet, isNil: $useNil, sheetID: $sheetID, whichEdit: $whichEdit)
+                }.onDelete(perform: { indexSet in
+                    theme.themeContents.remove(atOffsets: indexSet)
+                }).onMove(perform: { indices, newOffset in
+                    theme.themeContents.move(fromOffsets: indices, toOffset: newOffset)
+                })
             }
-            HStack {
-                Spacer()
-                Text("\(theme.themeDescription)\n\(theme.themeAuthor)")
-                Spacer()
-            }
-            .onSwipeLeft {
-                showSearch = false
-            }
+            Text("\(theme.themeAuthor) \(theme.themeName) \(theme.themeDescription)")
         }
         .navigationTitle(theme.themeName)
         .navigationBarItems(trailing: Menu {
@@ -82,19 +90,28 @@ struct ProjectEditor: View {
                 Text("Author")
                 Image(systemName: "person.crop.circle")
             }
+            EditButton()
             Button {
-                shareItems = [generatePlist(theme)]
+                shareItems = generatePlist(theme)
                 sheetID = 3
                 showSheet = true
             } label: {
                 Text("Export")
                 Image(systemName: "square.and.arrow.up")
             }
+            Button {
+//                shareItems = generatePlist(theme)
+//                sheetID = 4
+//                showSheet = true
+            } label: {
+                Text("Install")
+                Image(systemName: "square.and.arrow.down")
+            }
         } label: {
             Image(systemName: "ellipsis.circle")
         })
-
-        .sheet(isPresented: $showSheet) { () -> AnyView in
+        .popover(isPresented: $showSheet)
+        { () -> AnyView in
             if sheetID == 1 {
                 return AnyView(NewIconView(icons: $theme.themeContents, isPresented: $showSheet))
             }
@@ -103,6 +120,9 @@ struct ProjectEditor: View {
             }
             if sheetID == 3 {
                 return AnyView(AppActivityView(activityItems: shareItems))
+            }
+            if sheetID == 4 {
+//                return AnyView(WebView(urlType: .localUrl, viewModel: T##ViewModel))
             }
             return AnyView(Text("Uh-oh..."))
         }
@@ -125,8 +145,8 @@ struct NewIconView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    TextField("Icon Name (Internal)", text: $workingIcon.iconName)
-                    TextField("App Display Name (External)", text: $workingIcon.appName)
+                    TextField("Icon Name (Home Screen)", text: $workingIcon.iconName)
+                    TextField("App Display Name (Configurator)", text: $workingIcon.appName)
                     TextField("Bundle ID", text: $workingIcon.bundleID)
                     TextField("URL", text: $workingIcon.url)
                     Button(workingIcon.image == "" || icon == nil ? "Grab Base64 Icon" : "Replace Base64 Icon") {
@@ -159,7 +179,12 @@ struct ProjectEditor_Previews: PreviewProvider {
 }
 
 struct IconRow: View {
-    var icon: ThemeContent
+    @Binding var icon: ThemeContent
+    var iconID: Int?
+    @Binding var showSheet: Bool
+    @Binding var isNil: Bool
+    @Binding var sheetID: Int
+    @Binding var whichEdit: Int
     var body: some View {
         HStack {
             if let data = Data(base64Encoded: icon.image, options: .ignoreUnknownCharacters) {
@@ -179,14 +204,26 @@ struct IconRow: View {
                     .frame(width: 40, height: 40)
             }
             VStack(alignment: .leading) {
-                Text(icon.iconName)
+                Text(icon.iconName).bold()
                 Text(icon.appName)
             }
             Spacer()
             VStack(alignment: .trailing) {
                 Text(icon.bundleID)
-                Text(icon.url)
-            }
+                Text("\(icon.url)    \(iconID ?? -1)")
+            }.font(.custom("System", size: 12))
+            .foregroundColor(.secondary)
         }
+        .contextMenu(ContextMenu(menuItems: {
+            Button {
+                let base64 = UIPasteboard.general.string ?? ""
+                if Data(base64Encoded: base64, options: .ignoreUnknownCharacters) != nil {
+                    icon.image = base64
+                }
+            } label: {
+                Text("Set Icon")
+                Image(systemName: "photo")
+            }
+        }))
     }
 }

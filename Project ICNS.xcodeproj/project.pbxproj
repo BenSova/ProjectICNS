@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		764B7DEF252395D40090694C /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B7DEE252395D40090694C /* WebView.swift */; };
 		76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */; };
 		76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */; };
 		76BAD878251EE77E00C25512 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD877251EE77E00C25512 /* ContentView.swift */; };
@@ -18,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7635B34925202060000B9E7C /* SwiftUIX-0.0.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SwiftUIX-0.0.3"; path = "../../Downloads/SwiftUIX-0.0.3"; sourceTree = "<group>"; };
+		7635B34B25202B05000B9E7C /* Project ICNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project ICNS.entitlements"; sourceTree = "<group>"; };
+		764B7DEE252395D40090694C /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		76BAD870251EE77E00C25512 /* Project ICNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project ICNS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectICNSApp.swift; sourceTree = "<group>"; };
 		76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeThemeDocument.swift; sourceTree = "<group>"; };
@@ -26,7 +30,6 @@
 		76BAD87C251EE78000C25512 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		76BAD87E251EE78000C25512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76BAD887251FC08800C25512 /* ProjectEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditor.swift; sourceTree = "<group>"; };
-		76BAD88A251FCA2C00C25512 /* SwiftUIX-0.0.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SwiftUIX-0.0.3"; path = "../../Downloads/SwiftUIX-0.0.3"; sourceTree = "<group>"; };
 		76BAD890251FD86200C25512 /* plist Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "plist Generator.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,7 +48,7 @@
 		76BAD867251EE77D00C25512 = {
 			isa = PBXGroup;
 			children = (
-				76BAD88A251FCA2C00C25512 /* SwiftUIX-0.0.3 */,
+				7635B34925202060000B9E7C /* SwiftUIX-0.0.3 */,
 				76BAD872251EE77E00C25512 /* Project ICNS */,
 				76BAD871251EE77E00C25512 /* Products */,
 				76BAD88C251FCA3600C25512 /* Frameworks */,
@@ -63,10 +66,12 @@
 		76BAD872251EE77E00C25512 /* Project ICNS */ = {
 			isa = PBXGroup;
 			children = (
+				7635B34B25202B05000B9E7C /* Project ICNS.entitlements */,
 				76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */,
 				76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */,
 				76BAD877251EE77E00C25512 /* ContentView.swift */,
 				76BAD887251FC08800C25512 /* ProjectEditor.swift */,
+				764B7DEE252395D40090694C /* WebView.swift */,
 				76BAD890251FD86200C25512 /* plist Generator.swift */,
 				76BAD879251EE78000C25512 /* Assets.xcassets */,
 				76BAD87E251EE78000C25512 /* Info.plist */,
@@ -165,6 +170,7 @@
 				76BAD888251FC08800C25512 /* ProjectEditor.swift in Sources */,
 				76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */,
 				76BAD891251FD86200C25512 /* plist Generator.swift in Sources */,
+				764B7DEF252395D40090694C /* WebView.swift in Sources */,
 				76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */,
 				76BAD878251EE77E00C25512 /* ContentView.swift in Sources */,
 			);
@@ -294,6 +300,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Project ICNS/Project ICNS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Project ICNS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z3S9P7U36J;
@@ -304,10 +311,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "u-bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -316,6 +326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Project ICNS/Project ICNS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Project ICNS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z3S9P7U36J;
@@ -326,10 +337,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "u-bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

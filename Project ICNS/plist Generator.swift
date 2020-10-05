@@ -7,7 +7,7 @@
 
 import Foundation
 
-func generatePlist(_ theme: HomeThemeDocument) -> String {
+func generatePlist(_ theme: HomeThemeDocument) -> [Any] {
     var output = """
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -24,11 +24,11 @@ func generatePlist(_ theme: HomeThemeDocument) -> String {
                     <key>Icon</key>
                     <data>\(content.image)</data>
                     <key>Label</key>
-                    <string>\(content.iconName)</string>
+                    <string>\(content.iconName.replacingOccurrences(of: ",", with: ""))</string>
                     <key>PayloadDisplayName</key>
-                    <string>\(content.appName)</string>
+                    <string>\(content.appName.replacingOccurrences(of: ",", with: ""))</string>
                     <key>PayloadIdentifier</key>
-                    <string>u-bensova.icons.third-party.\(theme.themeAuthor).\(theme.themeName.replacingOccurrences(of: " ", with: "-")).\(content.iconName.replacingOccurrences(of: " ", with: "-"))</string>
+                    <string>u-bensova.icons.third-party.\(theme.themeAuthor).\(theme.themeName.replacingOccurrences(of: " ", with: "-")).\(content.appName.replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: ",", with: ""))</string>
                     <key>PayloadType</key>
                     <string>com.apple.webClip.managed</string>
                     <key>PayloadUUID</key>
@@ -63,5 +63,50 @@ func generatePlist(_ theme: HomeThemeDocument) -> String {
     </dict>
     </plist>
     """)
-    return output
+    let filename = getDocumentsDirectory().appendingPathComponent("\(theme.themeName).mobileconfig")
+
+    do {
+        try output.write(toFile: filename, atomically: true, encoding: String.Encoding.utf8)
+
+        let fileURL = NSURL(fileURLWithPath: filename)
+        return [fileURL]
+    } catch {
+        print("cannot write file")
+        // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
+        return []
+    }
+}
+
+func getDocumentsDirectory() -> NSString {
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let documentsDirectory = paths[0]
+    return documentsDirectory as NSString
+}
+
+extension Array {
+
+    /// Find the location of the first element with a certain value at a certain spot
+    ///
+    /// `Array.whereFrom(_:in:)` looks for all elements in an Array that, when passed into `grabItem(_:)` (aka `in`), matches `find`. If nothing is found `whereAt` will return `nil`.
+    ///
+    /// - Parameters:
+    ///   - find: The item to compare to the one found in an element.
+    ///   - grabItem: A func to convert an element to an item that can be compared to the `find` option.
+    /// - Returns: The location of the element that contains `find`.
+    /// # Declared in
+    ///  [FindMap.swift](https://github.com/SwiftStars/StdLibX/tree/master/Sources/StdLibX/Foundation/FindMap.swift)
+    ///
+    public func whereAt<T: Equatable>(_ find: T, at grabItem: (Element) -> T) -> Int? {
+        var status = (found: false, index: 0)
+        forEach { (item) in
+            if !(status.found) {
+                if grabItem(item) == find {
+                    status.found = true
+                } else {
+                    status.index += 1
+                }
+            }
+        }
+        return status.found ? status.index : nil
+    }
 }
