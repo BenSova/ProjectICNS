@@ -37,6 +37,7 @@ struct ProjectEditor: View {
                     .returnKeyType(.search)
                     .enablesReturnKeyAutomatically(true)
                     .searchBarStyle(.prominent)
+                    .showsCancelButton(true)
             } else {
                 Text("Search")
                     .onAppear {

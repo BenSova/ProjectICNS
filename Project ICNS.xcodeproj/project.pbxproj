@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		764B7DEF252395D40090694C /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B7DEE252395D40090694C /* WebView.swift */; };
+		76636649252BD1970085EDA3 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76636648252BD1970085EDA3 /* SwiftUIX */; };
 		76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */; };
 		76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */; };
 		76BAD878251EE77E00C25512 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD877251EE77E00C25512 /* ContentView.swift */; };
 		76BAD87A251EE78000C25512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BAD879251EE78000C25512 /* Assets.xcassets */; };
 		76BAD87D251EE78000C25512 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BAD87C251EE78000C25512 /* Preview Assets.xcassets */; };
 		76BAD888251FC08800C25512 /* ProjectEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD887251FC08800C25512 /* ProjectEditor.swift */; };
-		76BAD88E251FCA3600C25512 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76BAD88D251FCA3600C25512 /* SwiftUIX */; };
 		76BAD891251FD86200C25512 /* plist Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD890251FD86200C25512 /* plist Generator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7635B34925202060000B9E7C /* SwiftUIX-0.0.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SwiftUIX-0.0.3"; path = "../../Downloads/SwiftUIX-0.0.3"; sourceTree = "<group>"; };
 		7635B34B25202B05000B9E7C /* Project ICNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project ICNS.entitlements"; sourceTree = "<group>"; };
 		764B7DEE252395D40090694C /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		76636646252BD18A0085EDA3 /* SwiftUIX-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SwiftUIX-master"; path = "../../Downloads/SwiftUIX-master"; sourceTree = "<group>"; };
 		76BAD870251EE77E00C25512 /* Project ICNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project ICNS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectICNSApp.swift; sourceTree = "<group>"; };
 		76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeThemeDocument.swift; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76BAD88E251FCA3600C25512 /* SwiftUIX in Frameworks */,
+				76636649252BD1970085EDA3 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,7 +48,7 @@
 		76BAD867251EE77D00C25512 = {
 			isa = PBXGroup;
 			children = (
-				7635B34925202060000B9E7C /* SwiftUIX-0.0.3 */,
+				76636646252BD18A0085EDA3 /* SwiftUIX-master */,
 				76BAD872251EE77E00C25512 /* Project ICNS */,
 				76BAD871251EE77E00C25512 /* Products */,
 				76BAD88C251FCA3600C25512 /* Frameworks */,
@@ -112,7 +112,7 @@
 			);
 			name = "Project ICNS";
 			packageProductDependencies = (
-				76BAD88D251FCA3600C25512 /* SwiftUIX */,
+				76636648252BD1970085EDA3 /* SwiftUIX */,
 			);
 			productName = "Project ICNS";
 			productReference = 76BAD870251EE77E00C25512 /* Project ICNS.app */;
@@ -315,9 +315,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "u-bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -341,9 +341,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "u-bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -371,7 +371,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		76BAD88D251FCA3600C25512 /* SwiftUIX */ = {
+		76636648252BD1970085EDA3 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftUIX;
 		};
