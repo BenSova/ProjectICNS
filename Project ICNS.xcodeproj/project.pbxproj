@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76636649252BD1970085EDA3 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76636648252BD1970085EDA3 /* SwiftUIX */; };
+		76A2CE8F25301596001CF831 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76A2CE8E25301596001CF831 /* SwiftUIX */; };
 		76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */; };
 		76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */; };
 		76BAD878251EE77E00C25512 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD877251EE77E00C25512 /* ContentView.swift */; };
@@ -19,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		7635B34B25202B05000B9E7C /* Project ICNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project ICNS.entitlements"; sourceTree = "<group>"; };
-		76636646252BD18A0085EDA3 /* SwiftUIX-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "SwiftUIX-master"; path = "../../Downloads/SwiftUIX-master"; sourceTree = "<group>"; };
 		76BAD870251EE77E00C25512 /* Project ICNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project ICNS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectICNSApp.swift; sourceTree = "<group>"; };
 		76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeThemeDocument.swift; sourceTree = "<group>"; };
@@ -36,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76636649252BD1970085EDA3 /* SwiftUIX in Frameworks */,
+				76A2CE8F25301596001CF831 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,7 +45,6 @@
 		76BAD867251EE77D00C25512 = {
 			isa = PBXGroup;
 			children = (
-				76636646252BD18A0085EDA3 /* SwiftUIX-master */,
 				76BAD872251EE77E00C25512 /* Project ICNS */,
 				76BAD871251EE77E00C25512 /* Products */,
 				76BAD88C251FCA3600C25512 /* Frameworks */,
@@ -109,7 +107,7 @@
 			);
 			name = "Project ICNS";
 			packageProductDependencies = (
-				76636648252BD1970085EDA3 /* SwiftUIX */,
+				76A2CE8E25301596001CF831 /* SwiftUIX */,
 			);
 			productName = "Project ICNS";
 			productReference = 76BAD870251EE77E00C25512 /* Project ICNS.app */;
@@ -138,6 +136,9 @@
 				Base,
 			);
 			mainGroup = 76BAD867251EE77D00C25512;
+			packageReferences = (
+				76A2CE8D25301596001CF831 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+			);
 			productRefGroup = 76BAD871251EE77E00C25512 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -370,9 +371,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		76A2CE8D25301596001CF831 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		76636648252BD1970085EDA3 /* SwiftUIX */ = {
+		76A2CE8E25301596001CF831 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 76A2CE8D25301596001CF831 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
