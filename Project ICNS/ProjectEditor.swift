@@ -225,6 +225,15 @@ struct IconRow: View {
                 Text("Set Icon")
                 Image(systemName: "photo")
             }
+            Button {
+                let bundleID = UIPasteboard.general.string ?? ""
+                if bundleID != "" && !(bundleID.contains(" ")) {
+                    icon.bundleID = bundleID
+                }
+            } label: {
+                Text("Set Bundle ID")
+                Image(systemName: "textbox")
+            }
         }))
     }
 }
