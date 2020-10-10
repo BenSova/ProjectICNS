@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		769B12D2253128B000D57CA8 /* LINotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B12D1253128B000D57CA8 /* LINotificationView.swift */; };
 		76A2CE8F25301596001CF831 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76A2CE8E25301596001CF831 /* SwiftUIX */; };
 		76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */; };
 		76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		7635B34B25202B05000B9E7C /* Project ICNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project ICNS.entitlements"; sourceTree = "<group>"; };
+		769B12D1253128B000D57CA8 /* LINotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LINotificationView.swift; sourceTree = "<group>"; };
 		76BAD870251EE77E00C25512 /* Project ICNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project ICNS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectICNSApp.swift; sourceTree = "<group>"; };
 		76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeThemeDocument.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				76BAD877251EE77E00C25512 /* ContentView.swift */,
 				76BAD887251FC08800C25512 /* ProjectEditor.swift */,
 				76BAD890251FD86200C25512 /* plist Generator.swift */,
+				769B12D1253128B000D57CA8 /* LINotificationView.swift */,
 				76BAD879251EE78000C25512 /* Assets.xcassets */,
 				76BAD87E251EE78000C25512 /* Info.plist */,
 				76BAD87B251EE78000C25512 /* Preview Content */,
@@ -167,6 +170,7 @@
 			files = (
 				76BAD888251FC08800C25512 /* ProjectEditor.swift in Sources */,
 				76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */,
+				769B12D2253128B000D57CA8 /* LINotificationView.swift in Sources */,
 				76BAD891251FD86200C25512 /* plist Generator.swift in Sources */,
 				76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */,
 				76BAD878251EE77E00C25512 /* ContentView.swift in Sources */,
@@ -299,7 +303,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Project ICNS/Project ICNS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Project ICNS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z3S9P7U36J;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -310,7 +314,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0b2;
+				MARKETING_VERSION = 1.0b3;
 				PRODUCT_BUNDLE_IDENTIFIER = "u-bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -327,7 +331,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Project ICNS/Project ICNS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Project ICNS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z3S9P7U36J;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -338,7 +342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0b2;
+				MARKETING_VERSION = 1.0b3;
 				PRODUCT_BUNDLE_IDENTIFIER = "u-bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
