@@ -29,6 +29,7 @@ struct ProjectEditor: View {
     )
     @State var whichEdit = 0
     @State var useNil = true
+    @State var editorDetails: LINotificationTextDetails = (.init(get: {"NIL CONTENTS"}, set: {_ in}), "NIL TITLE", "NIL PLACEHOLDER", false, "NIL TEMP")
     
     var body: some View {
         VStack {
@@ -55,7 +56,7 @@ struct ProjectEditor: View {
                         return true
                     }
                 }, id: \.self) { icon in
-                    IconRow(icon: .init(get: {theme.themeContents[icon]}, set: {theme.themeContents[icon] = $0}), iconID: icon, showSheet: $showSheet, isNil: $useNil, sheetID: $sheetID, whichEdit: $whichEdit)
+                    IconRow(icon: .init(get: {theme.themeContents[icon]}, set: {theme.themeContents[icon] = $0}), iconID: icon, showSheet: $showSheet, isNil: $useNil, sheetID: $sheetID, whichEdit: $whichEdit, editorDetails: $editorDetails)
                 }.onDelete(perform: { indexSet in
                     theme.themeContents.remove(atOffsets: indexSet)
                 }).onMove(perform: { indices, newOffset in
@@ -74,19 +75,37 @@ struct ProjectEditor: View {
                 Image(systemName: "plus")
             }
             Button {
-                textEdit = \.themeName
+                editorDetails.to = $theme.themeName
+                editorDetails.title = "Theme Title"
+                editorDetails.placeholder = "Title"
+                editorDetails.temp = theme.themeName
+                withAnimation {
+                    editorDetails.shown = true
+                }
             } label: {
                 Text("Title")
                 Image(systemName: "textbox")
             }
             Button {
-                textEdit = \.themeDescription
+                editorDetails.to = $theme.themeDescription
+                editorDetails.title = "Description"
+                editorDetails.placeholder = "Description"
+                editorDetails.temp = theme.themeDescription
+                withAnimation {
+                    editorDetails.shown = true
+                }
             } label: {
                 Text("Description")
                 Image(systemName: "doc.plaintext")
             }
             Button {
-                textEdit = \.themeAuthor
+                editorDetails.to = $theme.themeAuthor
+                editorDetails.title = "Theme Author"
+                editorDetails.placeholder = "Author"
+                editorDetails.temp = theme.themeAuthor
+                withAnimation {
+                    editorDetails.shown = true
+                }
             } label: {
                 Text("Author")
                 Image(systemName: "person.crop.circle")
@@ -111,8 +130,7 @@ struct ProjectEditor: View {
         } label: {
             Image(systemName: "ellipsis.circle")
         })
-        .popover(isPresented: $showSheet)
-        { () -> AnyView in
+        .popover(isPresented: $showSheet) { () -> AnyView in
             if sheetID == 1 {
                 return AnyView(NewIconView(icons: $theme.themeContents, isPresented: $showSheet))
             }
@@ -126,7 +144,7 @@ struct ProjectEditor: View {
 //                return AnyView(WebView(urlType: .localUrl, viewModel: T##ViewModel))
 //            }
             return AnyView(Text("Uh-oh..."))
-        }
+        }.notificationEditor(t: editorDetails.title, p: editorDetails.placeholder, input: editorDetails.to, temp: editorDetails.temp, shown: $editorDetails.shown)
     }
 }
 
@@ -186,6 +204,7 @@ struct IconRow: View {
     @Binding var isNil: Bool
     @Binding var sheetID: Int
     @Binding var whichEdit: Int
+    @Binding var editorDetails: LINotificationTextDetails
     var body: some View {
         HStack {
             if let data = Data(base64Encoded: icon.image, options: .ignoreUnknownCharacters) {
@@ -226,13 +245,52 @@ struct IconRow: View {
                 Image(systemName: "photo")
             }
             Button {
-                let bundleID = UIPasteboard.general.string ?? ""
-                if bundleID != "" && !(bundleID.contains(" ")) {
-                    icon.bundleID = bundleID
+                editorDetails.to = $icon.bundleID
+                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+                editorDetails.placeholder = "Bundle ID"
+                editorDetails.temp = icon.bundleID
+                withAnimation {
+                    editorDetails.shown = true
                 }
             } label: {
                 Text("Set Bundle ID")
                 Image(systemName: "textbox")
+            }
+            Button {
+                editorDetails.to = $icon.url
+                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+                editorDetails.placeholder = "URL Scheme"
+                editorDetails.temp = icon.url
+                withAnimation {
+                    editorDetails.shown = true
+                }
+            } label: {
+                Text("Set URL Scheme")
+                Image(systemName: "safari")
+            }
+            Button {
+                editorDetails.to = $icon.iconName
+                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+                editorDetails.placeholder = "Icon Name"
+                editorDetails.temp = icon.iconName
+                withAnimation {
+                    editorDetails.shown = true
+                }
+            } label: {
+                Text("Set Display Name")
+                Image(systemName: "textformat.abc.dottedunderline")
+            }
+            Button {
+                editorDetails.to = $icon.appName
+                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+                editorDetails.placeholder = "App ID"
+                editorDetails.temp = icon.appName
+                withAnimation {
+                    editorDetails.shown = true
+                }
+            } label: {
+                Text("Set App Name")
+                Image(systemName: "textformat.size")
             }
         }))
     }
