@@ -111,12 +111,65 @@ struct LINotificationTextView: View {
     }
 }
 
+struct LINotificationActionView: View {
+    @Binding var isPresented: Bool
+    var title: String
+    var buttons: [(uuid: UUID, image: Image, action: () -> ())]
+    var body: some View {
+        VStack {
+            ZStack(alignment: .leading) {
+                ZStack {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.secondarySystemGroupedBackground)
+                            .cornerRadius(50)
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0.0, y: 0.0)
+                    }
+                    VStack(spacing: 2) {
+                        Text(title)
+                            .font(.caption2)
+                            .fontWeight(.heavy)
+                            .maxWidth(150)
+                            .padding(.horizontal, 65)
+                        HStack {
+                            ForEach(buttons, id: \.uuid) { button in
+                                Button {
+                                    button.action()
+                                    isPresented = false
+                                } label: {
+                                    button.image
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .cornerRadius(20)
+                                }
+                            }
+                        }
+                    }.padding(.vertical, 4)
+                }
+                .frame(height: 50)
+                .fixedSize(horizontal: true, vertical: false)
+            }
+            Spacer()
+        }.padding()
+        .offset(y: isPresented ? 0 : -120)
+    }
+}
+
 extension View {
     func notificationEditor(t title: String, p placeholder: String, input: Binding<String>, temp: String, shown: Binding<Bool>) -> AnyView {
         return AnyView(ZStack {
             self
             if shown.wrappedValue {
                 LINotificationTextView(isPresented: shown, title: title, text: input, tempText: temp, placeholder: placeholder)
+            }
+        })
+    }
+    
+    func notificationAction(t title: String, b buttons: [(UUID, Image, () -> ())], shown: Binding<Bool>) -> AnyView {
+        return AnyView(ZStack {
+            self
+            if shown.wrappedValue {
+                LINotificationActionView(isPresented: shown, title: title, buttons: buttons)
             }
         })
     }
@@ -129,7 +182,8 @@ struct LINotificationView_Previews: PreviewProvider {
         ZStack {
             Text("Hello, World!")
 //            LINotificationView(isPresented: .constant(true), title: "Ben's AirPods", description: "Are Awesome!")
-            LINotificationTextView(isPresented: .constant(true), title: "Write Some Text", text: .constant("Are Awesome!"), tempText: "Are Awesome!", placeholder: "Bundle ID")
+//            LINotificationTextView(isPresented: .constant(true), title: "Write Some Text", text: .constant("Are Awesome!"), tempText: "Are Awesome!", placeholder: "Bundle ID")
+            LINotificationActionView(isPresented: .constant(true), title: "Choose a Photo", buttons: [(UUID(), Image("Cancel"), {}), (UUID(), Image("Photos"), {}), (UUID(), Image("Clipboard"), {}), (UUID(), Image("Files"), {})])
         }
     }
 }

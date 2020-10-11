@@ -30,6 +30,7 @@ struct ProjectEditor: View {
     @State var whichEdit = 0
     @State var useNil = true
     @State var editorDetails: LINotificationTextDetails = (.init(get: {"NIL CONTENTS"}, set: {_ in}), "NIL TITLE", "NIL PLACEHOLDER", false, "NIL TEMP")
+    @State var showPhotosAction = true
     
     var body: some View {
         VStack {
@@ -145,6 +146,7 @@ struct ProjectEditor: View {
 //            }
             return AnyView(Text("Uh-oh..."))
         }.notificationEditor(t: editorDetails.title, p: editorDetails.placeholder, input: editorDetails.to, temp: editorDetails.temp, shown: $editorDetails.shown)
+        .notificationAction(t: "Choose a Photo", b: [(UUID(), Image("Cancel"), {}), (UUID(), Image("Photos"), {}), (UUID(), Image("Clipboard"), {}), (UUID(), Image("Files"), {})], shown: $showPhotosAction)
     }
 }
 
