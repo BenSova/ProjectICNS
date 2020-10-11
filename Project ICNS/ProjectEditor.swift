@@ -19,7 +19,6 @@ struct ProjectEditor: View {
     @State var sheetID = 0
     @State var shareItems: [Any] = []
     @State var searchFor = ""
-    @State var showSearch = true
     @State var themeEdit = ThemeContent(
         iconName: "",
         appName: "",
@@ -34,18 +33,11 @@ struct ProjectEditor: View {
     
     var body: some View {
         VStack {
-            if showSearch {
-                SearchBar(text: $searchFor)
-                    .returnKeyType(.search)
-                    .enablesReturnKeyAutomatically(true)
-                    .searchBarStyle(.prominent)
-                    .showsCancelButton(true)
-            } else {
-                Text("Search")
-                    .onAppear {
-                        showSearch = true
-                    }
-            }
+            SearchBar(text: $searchFor)
+                .returnKeyType(.search)
+                .enablesReturnKeyAutomatically(true)
+                .searchBarStyle(.prominent)
+                .showsCancelButton(true)
             List {
                 ForEach((0 ..< theme.themeContents.count).filter {
                     if searchFor != "" {
