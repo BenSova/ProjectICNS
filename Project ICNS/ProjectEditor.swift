@@ -26,10 +26,12 @@ struct ProjectEditor: View {
         image: "",
         url: "http://"
     )
-    @State var whichEdit = 0
     @State var useNil = true
     @State var editorDetails: LINotificationTextDetails = (.init(get: {"NIL CONTENTS"}, set: {_ in}), "NIL TITLE", "NIL PLACEHOLDER", false, "NIL TEMP")
-    @State var showPhotosAction = true
+    @State var showPhotosAction = false
+    @State var photosData: Data?
+    @State var showDocumentPicker = false
+    @State var modifyAt = 0
     
     var body: some View {
         VStack {
@@ -41,7 +43,7 @@ struct ProjectEditor: View {
             List {
                 ForEach((0 ..< theme.themeContents.count).filter {
                     if searchFor != "" {
-                        if theme.themeContents[$0].iconName.contains(searchFor.lowercased()) || theme.themeContents[$0].bundleID.contains(searchFor.lowercased()) {
+                        if theme.themeContents[$0].appName.contains(searchFor.lowercased()) || theme.themeContents[$0].bundleID.contains(searchFor.lowercased()) {
                             return true
                         }
                         return false
@@ -49,20 +51,32 @@ struct ProjectEditor: View {
                         return true
                     }
                 }, id: \.self) { icon in
-                    IconRow(icon: .init(get: {theme.themeContents[icon]}, set: {theme.themeContents[icon] = $0}), iconID: icon, showSheet: $showSheet, isNil: $useNil, sheetID: $sheetID, whichEdit: $whichEdit, editorDetails: $editorDetails)
+                    IconRow(icon:
+                        .init(get: {
+                                    theme.themeContents[icon]},
+                              set: {
+                                theme.themeContents[icon] = $0
+                              }),
+                            iconID: icon,
+                            showSheet: .init(get: {
+                        showPhotosAction
+                    }, set: { _ in
+                        modifyAt = icon
+                        showPhotosAction = true
+                    }), isNil: $useNil, sheetID: $sheetID, editorDetails: $editorDetails)
                 }.onDelete(perform: { indexSet in
                     theme.themeContents.remove(atOffsets: indexSet)
                 }).onMove(perform: { indices, newOffset in
                     theme.themeContents.move(fromOffsets: indices, toOffset: newOffset)
                 })
             }
-            Text("\(theme.themeAuthor) \(theme.themeName) \(theme.themeDescription)")
         }
         .navigationTitle(theme.themeName)
         .navigationBarItems(trailing: Menu {
             Button {
-                sheetID = 1
-                showSheet = true
+//                sheetID = 1
+//                showSheet = true
+                theme.themeContents.append(.init(iconName: "New Icon", appName: "New Icon \(theme.themeContents.count)", bundleID: "com.new.new", image: "", url: "http://"))
             } label: {
                 Text("Add")
                 Image(systemName: "plus")
@@ -123,12 +137,20 @@ struct ProjectEditor: View {
         } label: {
             Image(systemName: "ellipsis.circle")
         })
-        .popover(isPresented: $showSheet) { () -> AnyView in
+        .sheet(isPresented: $showSheet, onDismiss: {
+            if sheetID == 2 {
+                guard let photosData = photosData else { return }
+                guard let imageData = UIImage(data: photosData) else { return }
+                guard let resizedImage = resizeImage(image: imageData, targetSize: .init(width: 140, height: 140)) else { return }
+                guard let pngData = resizedImage.pngData() else { return }
+                theme.themeContents[modifyAt].image = pngData.base64EncodedString()
+            }
+        }) { () -> AnyView in
             if sheetID == 1 {
                 return AnyView(NewIconView(icons: $theme.themeContents, isPresented: $showSheet))
             }
             if sheetID == 2 {
-                return AnyView(TextEditor(text: .init(get: {theme[keyPath: textEdit]}, set: {theme[keyPath: textEdit] = $0})))
+                return AnyView(ImagePicker(data: $photosData, encoding: .png))
             }
             if sheetID == 3 {
                 return AnyView(AppActivityView(activityItems: shareItems))
@@ -138,7 +160,37 @@ struct ProjectEditor: View {
 //            }
             return AnyView(Text("Uh-oh..."))
         }.notificationEditor(t: editorDetails.title, p: editorDetails.placeholder, input: editorDetails.to, temp: editorDetails.temp, shown: $editorDetails.shown)
-        .notificationAction(t: "Choose a Photo", b: [(UUID(), Image("Cancel"), {}), (UUID(), Image("Photos"), {}), (UUID(), Image("Clipboard"), {}), (UUID(), Image("Files"), {})], shown: $showPhotosAction)
+        .notificationAction(t: "Choose a Photo", b: [(UUID(), Image("Cancel"), {}), (UUID(), Image("Photos"), {
+            sheetID = 2
+            photosData = nil
+            showSheet = true
+        }), (UUID(), Image("Clipboard"), {
+            if let base64String = UIPasteboard.general.string {
+                guard let unencodedData = Data(base64Encoded: base64String) else { return }
+                if Image(data: unencodedData) != nil {
+                    theme.themeContents[modifyAt].image = base64String
+                }
+            } else if let imageData = UIPasteboard.general.image {
+                guard let resizedImage = resizeImage(image: imageData, targetSize: .init(width: 140, height: 140)) else { return }
+                guard let pngData = resizedImage.pngData() else { return }
+                theme.themeContents[modifyAt].image = pngData.base64EncodedString()
+            }
+        }), (UUID(), Image("Files"), {
+            photosData = nil
+            showDocumentPicker = true
+        })], shown: $showPhotosAction)
+        .fileImporter(isPresented: $showDocumentPicker, allowedContentTypes: [.png]) { (result) in
+            do {
+                let url = try result.get()
+                guard let photosData = try? Data(contentsOf: url) else { return }
+                guard let imageData = UIImage(data: photosData) else { return }
+                guard let resizedImage = resizeImage(image: imageData, targetSize: .init(width: 140, height: 140)) else { return }
+                guard let pngData = resizedImage.pngData() else { return }
+                theme.themeContents[modifyAt].image = pngData.base64EncodedString()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -197,7 +249,6 @@ struct IconRow: View {
     @Binding var showSheet: Bool
     @Binding var isNil: Bool
     @Binding var sheetID: Int
-    @Binding var whichEdit: Int
     @Binding var editorDetails: LINotificationTextDetails
     var body: some View {
         HStack {
@@ -211,11 +262,13 @@ struct IconRow: View {
                     Image(systemName: "app.fill")
                         .resizable()
                         .frame(width: 40, height: 40)
+                        .foregroundColor(.red)
                 }
             } else {
                 Image(systemName: "app")
                     .resizable()
                     .frame(width: 40, height: 40)
+                    .foregroundColor(.red)
             }
             VStack(alignment: .leading) {
                 Text(icon.iconName).bold()
@@ -230,10 +283,7 @@ struct IconRow: View {
         }
         .contextMenu(ContextMenu(menuItems: {
             Button {
-                let base64 = UIPasteboard.general.string ?? ""
-                if Data(base64Encoded: base64, options: .ignoreUnknownCharacters) != nil {
-                    icon.image = base64
-                }
+                showSheet = true
             } label: {
                 Text("Set Icon")
                 Image(systemName: "photo")
