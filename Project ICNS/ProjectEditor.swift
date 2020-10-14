@@ -254,21 +254,37 @@ struct IconRow: View {
         HStack {
             if let data = Data(base64Encoded: icon.image, options: .ignoreUnknownCharacters) {
                 if let image = Image(data: data) {
-                    image
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(8)
+                    Menu {
+                        menu
+                    } label: {
+                        image
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .cornerRadius(8)
+                    }
                 } else {
-                    Image(systemName: "app.fill")
+                    Button {
+                        withAnimation {
+                            showSheet = true
+                        }
+                    } label: {
+                        Image(systemName: "app.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.red)
+                    }
+                }
+            } else {
+                Button {
+                    withAnimation {
+                        showSheet = true
+                    }
+                } label: {
+                    Image(systemName: "app")
                         .resizable()
                         .frame(width: 40, height: 40)
                         .foregroundColor(.red)
                 }
-            } else {
-                Image(systemName: "app")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(.red)
             }
             VStack(alignment: .leading) {
                 Text(icon.iconName).bold()
@@ -282,60 +298,67 @@ struct IconRow: View {
             .foregroundColor(.secondary)
         }
         .contextMenu(ContextMenu(menuItems: {
-            Button {
-                showSheet = true
-            } label: {
-                Text("Set Icon")
-                Image(systemName: "photo")
-            }
-            Button {
-                editorDetails.to = $icon.bundleID
-                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
-                editorDetails.placeholder = "Bundle ID"
-                editorDetails.temp = icon.bundleID
-                withAnimation {
-                    editorDetails.shown = true
-                }
-            } label: {
-                Text("Set Bundle ID")
-                Image(systemName: "textbox")
-            }
-            Button {
-                editorDetails.to = $icon.url
-                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
-                editorDetails.placeholder = "URL Scheme"
-                editorDetails.temp = icon.url
-                withAnimation {
-                    editorDetails.shown = true
-                }
-            } label: {
-                Text("Set URL Scheme")
-                Image(systemName: "safari")
-            }
-            Button {
-                editorDetails.to = $icon.iconName
-                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
-                editorDetails.placeholder = "Icon Name"
-                editorDetails.temp = icon.iconName
-                withAnimation {
-                    editorDetails.shown = true
-                }
-            } label: {
-                Text("Set Display Name")
-                Image(systemName: "textformat.abc.dottedunderline")
-            }
-            Button {
-                editorDetails.to = $icon.appName
-                editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
-                editorDetails.placeholder = "App ID"
-                editorDetails.temp = icon.appName
-                withAnimation {
-                    editorDetails.shown = true
-                }
-            } label: {
-                Text("Set App Name")
-                Image(systemName: "textformat.size")
-            }
+            menu
         }))
+    }
+    
+    @ViewBuilder
+    var menu: some View {
+        Button {
+            withAnimation {
+                showSheet = true
+            }
+        } label: {
+            Text("Set Icon")
+            Image(systemName: "photo")
+        }
+        Button {
+            editorDetails.to = $icon.bundleID
+            editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+            editorDetails.placeholder = "Bundle ID"
+            editorDetails.temp = icon.bundleID
+            withAnimation {
+                editorDetails.shown = true
+            }
+        } label: {
+            Text("Set Bundle ID")
+            Image(systemName: "textbox")
+        }
+        Button {
+            editorDetails.to = $icon.url
+            editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+            editorDetails.placeholder = "URL Scheme"
+            editorDetails.temp = icon.url
+            withAnimation {
+                editorDetails.shown = true
+            }
+        } label: {
+            Text("Set URL Scheme")
+            Image(systemName: "safari")
+        }
+        Button {
+            editorDetails.to = $icon.iconName
+            editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+            editorDetails.placeholder = "Icon Name"
+            editorDetails.temp = icon.iconName
+            withAnimation {
+                editorDetails.shown = true
+            }
+        } label: {
+            Text("Set Display Name")
+            Image(systemName: "textformat.abc.dottedunderline")
+        }
+        Button {
+            editorDetails.to = $icon.appName
+            editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
+            editorDetails.placeholder = "App ID"
+            editorDetails.temp = icon.appName
+            withAnimation {
+                editorDetails.shown = true
+            }
+        } label: {
+            Text("Set App Name")
+            Image(systemName: "textformat.size")
+        }
     }
 }

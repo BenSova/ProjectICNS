@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7674B7712533983F0027F20F /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7674B7702533983F0027F20F /* ResizeImage.swift */; };
+		7689A08325367BF10021A030 /* ASSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7689A08225367BF10021A030 /* ASSearch.swift */; };
 		769B12D2253128B000D57CA8 /* LINotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B12D1253128B000D57CA8 /* LINotificationView.swift */; };
 		76A2CE8F25301596001CF831 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 76A2CE8E25301596001CF831 /* SwiftUIX */; };
 		76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		7635B34B25202B05000B9E7C /* Project ICNS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project ICNS.entitlements"; sourceTree = "<group>"; };
 		7674B7702533983F0027F20F /* ResizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
+		7689A08225367BF10021A030 /* ASSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASSearch.swift; sourceTree = "<group>"; };
 		769B12D1253128B000D57CA8 /* LINotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LINotificationView.swift; sourceTree = "<group>"; };
 		76BAD870251EE77E00C25512 /* Project ICNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project ICNS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BAD873251EE77E00C25512 /* ProjectICNSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectICNSApp.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				76BAD875251EE77E00C25512 /* HomeThemeDocument.swift */,
 				76BAD877251EE77E00C25512 /* ContentView.swift */,
 				76BAD887251FC08800C25512 /* ProjectEditor.swift */,
+				7689A08225367BF10021A030 /* ASSearch.swift */,
 				76BAD890251FD86200C25512 /* plist Generator.swift */,
 				769B12D1253128B000D57CA8 /* LINotificationView.swift */,
 				7674B7702533983F0027F20F /* ResizeImage.swift */,
@@ -174,6 +177,7 @@
 				76BAD888251FC08800C25512 /* ProjectEditor.swift in Sources */,
 				76BAD874251EE77E00C25512 /* ProjectICNSApp.swift in Sources */,
 				769B12D2253128B000D57CA8 /* LINotificationView.swift in Sources */,
+				7689A08325367BF10021A030 /* ASSearch.swift in Sources */,
 				7674B7712533983F0027F20F /* ResizeImage.swift in Sources */,
 				76BAD891251FD86200C25512 /* plist Generator.swift in Sources */,
 				76BAD876251EE77E00C25512 /* HomeThemeDocument.swift in Sources */,
@@ -307,7 +311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Project ICNS/Project ICNS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Project ICNS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z3S9P7U36J;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -318,7 +322,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0b4;
+				MARKETING_VERSION = 1.0b5;
 				PRODUCT_BUNDLE_IDENTIFIER = "bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -335,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Project ICNS/Project ICNS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Project ICNS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z3S9P7U36J;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -346,7 +350,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0b4;
+				MARKETING_VERSION = 1.0b5;
 				PRODUCT_BUNDLE_IDENTIFIER = "bensova.Project-ICNS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
