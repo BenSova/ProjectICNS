@@ -86,7 +86,7 @@ struct ProjectEditor: View {
                 editorDetails.title = "Theme Title"
                 editorDetails.placeholder = "Title"
                 editorDetails.temp = theme.themeName
-                withAnimation {
+                withAnimation(.easeOut(duration: 0.3)) {
                     editorDetails.shown = true
                 }
             } label: {
@@ -98,7 +98,7 @@ struct ProjectEditor: View {
                 editorDetails.title = "Description"
                 editorDetails.placeholder = "Description"
                 editorDetails.temp = theme.themeDescription
-                withAnimation {
+                withAnimation(.easeOut(duration: 0.3)) {
                     editorDetails.shown = true
                 }
             } label: {
@@ -110,7 +110,7 @@ struct ProjectEditor: View {
                 editorDetails.title = "Theme Author"
                 editorDetails.placeholder = "Author"
                 editorDetails.temp = theme.themeAuthor
-                withAnimation {
+                withAnimation(.easeOut(duration: 0.3)) {
                     editorDetails.shown = true
                 }
             } label: {
@@ -264,7 +264,7 @@ struct IconRow: View {
                     }
                 } else {
                     Button {
-                        withAnimation {
+                        withAnimation(.easeOut(duration: 0.3)) {
                             showSheet = true
                         }
                     } label: {
@@ -276,7 +276,7 @@ struct IconRow: View {
                 }
             } else {
                 Button {
-                    withAnimation {
+                    withAnimation(.easeOut(duration: 0.3)) {
                         showSheet = true
                     }
                 } label: {
@@ -305,7 +305,7 @@ struct IconRow: View {
     @ViewBuilder
     var menu: some View {
         Button {
-            withAnimation {
+            withAnimation(.easeOut(duration: 0.3)) {
                 showSheet = true
             }
         } label: {
@@ -317,7 +317,7 @@ struct IconRow: View {
             editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
             editorDetails.placeholder = "Bundle ID"
             editorDetails.temp = icon.bundleID
-            withAnimation {
+            withAnimation(.easeOut(duration: 0.3)) {
                 editorDetails.shown = true
             }
         } label: {
@@ -329,7 +329,7 @@ struct IconRow: View {
             editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
             editorDetails.placeholder = "URL Scheme"
             editorDetails.temp = icon.url
-            withAnimation {
+            withAnimation(.easeOut(duration: 0.3)) {
                 editorDetails.shown = true
             }
         } label: {
@@ -341,7 +341,7 @@ struct IconRow: View {
             editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
             editorDetails.placeholder = "Icon Name"
             editorDetails.temp = icon.iconName
-            withAnimation {
+            withAnimation(.easeOut(duration: 0.3)) {
                 editorDetails.shown = true
             }
         } label: {
@@ -353,7 +353,7 @@ struct IconRow: View {
             editorDetails.title = icon.iconName != " " ? icon.iconName : icon.appName
             editorDetails.placeholder = "App ID"
             editorDetails.temp = icon.appName
-            withAnimation {
+            withAnimation(.easeOut(duration: 0.3)) {
                 editorDetails.shown = true
             }
         } label: {
